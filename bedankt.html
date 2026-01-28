@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact – Status</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Ga naar inhoud</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo">M</div>
+          <div>
+            <p class="brand-name">MAKSAN</p>
+            <p class="brand-tagline">
+              Waterdichting & Renovatie — Regio Leuven
+            </p>
+          </div>
+        </div>
+
+        <div class="header-cta">
+          <a
+            class="btn btn-ghost"
+            href="mailto:info.maksan@gmail.com?subject=Offerte%20aanvraag%20-%20Waterdichting%20Leuven"
+            >Mail</a
+          >
+          <a class="btn btn-primary" href="index.html#contact"
+            >Terug naar contact</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container">
+          <div class="card">
+            <h1 id="title">Even kijken…</h1>
+            <p id="message" class="muted">We laden de status.</p>
+
+            <div class="hero-actions" style="margin-top: 18px">
+              <a class="btn btn-primary" href="index.html">Terug naar home</a>
+              <a class="btn btn-secondary" href="index.html#contact"
+                >Nieuw bericht</a
+              >
+            </div>
+
+            <p class="muted small" style="margin-top: 14px">
+              Lukt het niet? Mail direct naar
+              <a href="mailto:info.maksan@gmail.com">info.maksan@gmail.com</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Maksan Waterdichting — Regio Leuven</p>
+        <p class="muted">Kelder • Gevel • Dak • Betonherstel • Schimmel</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get("status");
+      const msg = params.get("msg");
+
+      const title = document.getElementById("title");
+      const message = document.getElementById("message");
+
+      if (status === "ok") {
+        title.textContent = "✅ Bericht verzonden";
+        message.textContent =
+          "Bedankt! We hebben je bericht goed ontvangen en antwoorden zo snel mogelijk.";
+      } else if (status === "fail") {
+        title.textContent = "❌ Verzenden mislukt";
+        message.textContent = msg
+          ? decodeURIComponent(msg)
+          : "Er ging iets mis. Probeer opnieuw of mail ons rechtstreeks.";
+      } else {
+        title.textContent = "Contact status";
+        message.textContent =
+          "Ga terug naar het contactformulier om een bericht te sturen.";
+      }
+    </script>
+  </body>
+</html>
